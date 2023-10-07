@@ -8,7 +8,7 @@ from iebank_api import db, app
 def testing_client(scope='module'):
     with app.app_context():
         db.create_all()
-        account = Account('Test Account', 'country', '€')
+        account = Account('Test Account', 'Some Country', '€')
         db.session.add(account)
         db.session.commit()
 

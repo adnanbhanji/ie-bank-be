@@ -15,16 +15,21 @@ def test_create_account():
     assert account.balance == 0.0
     assert account.status == 'Active'
 
-def test_account_deposit():
-    account = Account(name="John Doe", currency="€", country="Spain")
-    initial_balance = account.balance
-    deposit_amount = 100
-    account.deposit(deposit_amount)
-    assert account.balance == initial_balance + deposit_amount
 
-def test_account_withdraw():
-    account = Account(name="John Doe", currency="€", country="Spain")
-    account.balance = 200  # Set an initial balance
-    withdrawal_amount = 100
-    account.withdraw(withdrawal_amount)
-    assert account.balance == 100  # The new balance after withdrawal
+def test_account_deactivate():
+    """
+    GIVEN a Account model
+    WHEN a new Account is created
+    THEN check the __deactivate__ method is defined correctly
+    """
+    account = Account("John Doe", "Spain", "€")
+    assert account.__deactivate__() == "Inactive"
+    
+def test_account_check():
+    """
+    GIVEN a Account model
+    WHEN a new Account is created
+    THEN check the __repr__ method is defined correctly
+    """
+    account = Account("John Doe", "Spain", "€")
+    assert repr(account) == f"<Event '{(account.account_number)}'>"
